@@ -8,7 +8,28 @@
 </head>
 <body>
     <script>
-        
+        let computerSelection = '';
+        function computerPlay(){
+            let computerRandomNumber = Math.floor(Math.random()*3);
+            if (computerRandomNumber === 0){
+                computerSelection = 'rock'
+                console.log(computerSelection);
+                return computerSelection;
+                
+            }else if(computerRandomNumber === 1){
+                computerSelection = 'paper'
+                console.log(computerSelection);
+                return computerSelection;
+                
+            }else{
+                computerSelection = 'scissors'
+                console.log(computerSelection);
+                return computerSelection;
+                
+            }
+        }
+        computerPlay();
+        //console.log(computerSelection);
     </script>
 </body>
 </html>

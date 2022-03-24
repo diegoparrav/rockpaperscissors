@@ -1,23 +1,23 @@
 pseudocode rock paper scisors
 
-1 -make a variable that stores a random value from 0 to 2 and name it randomNumber
-2 -make a function that assigns a string value to the variable computerPlay depending on the value of randomNumber
-	if randomNumber === 0, then computerPLay = "rock"
-	if randomNumber === 1, then computerPLay = "paper"
-	if randomNumber === 2, then computerPlay = "scissors"
+1 -make a variable that stores a random value from 0 to 2 and name it computerRandomNumber
+2 -make a function that assigns a string value to the variable computerSelection depending on the value of randomNumber
+	if randomNumber === 0, then computerSelection = "rock"
+	if randomNumber === 1, then computerSelection = "paper"
+	if randomNumber === 2, then computerSelection = "scissors"
 3 -ask the user for a selection of rock, paper, scissors, store this value on a variable called playerSelection
 4 -function (while loop) that determines if the user imputed a correct selection
 5 -function that plays a single rock paper scissors game
-	a set of conditional statements that check the computerPlay vs playerSelection
+	a set of conditional statements that check the computerSelection vs playerSelection
 	if playerSelection is rock
-		if computerPlay is rock, print "it's a tie"
-		else if computerPlay is scissors, print "you win!"
-		else computerPlay is paper, print "you lose"
+		if computerSelection is rock, print "it's a tie"
+		else if computerSelection is scissors, print "you win!"
+		else computerSelection is paper, print "you lose"
 	if playerSelection is paper
-		if computerPlay is rock, print "you win!"
-		else if computerPlay is scissors, print "you lose!"
-		else computerPlay is paper, print "it's a tie"
+		if computerSelection is rock, print "you win!"
+		else if computerSelection is scissors, print "you lose!"
+		else computerSelection is paper, print "it's a tie"
 	if playerSelection is scissor
-		if computerPlay is rock, print "you lose!"
-		else if computerPlay is scissors, print "it's a tie"
-		else computerPlay is paper, print "you win!"
+		if computerSelection is rock, print "you lose!"
+		else if computerSelection is scissors, print "it's a tie"
+		else computerSelection is paper, print "you win!"
