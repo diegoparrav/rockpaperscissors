@@ -1,35 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Let's play rock, paper scissors</title>
 </head>
+
 <body>
     <script>
+        // variable declaration for a global variable, set to an empty string for both the selection of the computer and user
         let computerSelection = '';
-        function computerPlay(){
-            let computerRandomNumber = Math.floor(Math.random()*3);
-            if (computerRandomNumber === 0){
+        let playerSelection = '';
+        // variable to control de while loop that determines a valid imput from the user 
+        let loopController = true;
+        // variables to record the amount of wins, loses and ties
+        let playerWins = 0;
+        let playerLoses = 0;
+        let ties = 0;
+        let fuckYouLoop = '';
+
+
+        // function to set a random selection between rock paper or scissors for the computer 
+        function computerPlay() {
+            let computerRandomNumber = Math.floor(Math.random() * 3);
+            if (computerRandomNumber === 0) {
                 computerSelection = 'rock'
-                console.log(computerSelection);
+                //console.log(computerSelection);
                 return computerSelection;
-                
-            }else if(computerRandomNumber === 1){
+
+            } else if (computerRandomNumber === 1) {
                 computerSelection = 'paper'
-                console.log(computerSelection);
+                //console.log(computerSelection);
                 return computerSelection;
-                
-            }else{
+
+            } else {
                 computerSelection = 'scissors'
-                console.log(computerSelection);
+                //console.log(computerSelection);
                 return computerSelection;
-                
             }
         }
+
+        //function to record a valid choice for the game from the user 
+        function playerPlay() {
+
+            while (loopController) {
+                let playerSelection = (prompt("It's time to play, Rock, Paper, Scissors!")).toLowerCase();
+                if (!(playerSelection === 'rock' || playerSelection === 'paper' || playerSelection === 'scissors')) {
+                    alert('Your selection is not valid, Pleas choose between Rock, Paper or Scissors')
+                } else {
+                    alert('your selection has been recorded');
+                    console.log(playerSelection);
+                    fuckYouLoop = 'WHAT THE FUCK IS HAPPENING';
+                    loopController = false;
+                }
+            }
+            console.log(playerSelection + 'hello');
+            console.log(loopController);
+            console.log(fuckYouLoop);    
+        }
+
+        function playRound(computerChoice,playerChoice) {
+            //console.log(computerChoice);
+            //console.log(playerChoice);
+            
+            if (playerChoice === 'rock'){
+                //console.log('here');
+                if (computerChoice === 'rock'){
+                    alert('It\'s a tie!, you both picked rock!');
+                    ties = ties + 1;
+                    alert(`You have tied ${ties} times`);
+                    return ties;
+
+                }else if (computerChoice === 'paper') {
+                    alert('You lose!, paper beats rock!');
+                    playerLoses = playerloses + 1;
+                    alert(`You have lost ${playerloses} times`);
+                    return(playerloses);
+
+                }else if (computerChoice === 'scissors'){
+                    alert('You win!, rock beats scissors!');
+                    playerWins = playerWins + 1;
+                    alert(`You have won ${playerWins} times`);
+                    return(playerloses);}
+            }
+        }
+
+/*
+            }else if(playerChoice === 'paper'){
+                if (computerChoice === 'rock'){
+                    alert('You win!, paper beats rock!')
+                    playerWins = playerWins + 1;
+                    alert(`You have won ${playerWins} times`);
+                    return playerWins;
+                }else if (computerChoice === 'paper') {
+                    alert('It\'s a tie!, you both picked paper!')
+                    ties = ties + 1;
+                    alert(`You have tied ${ties} times`);
+                    return(ties);
+                }else if (computerChoice === 'scissors'){
+                    alert('You lose!, scissors beats paper!')
+                    playerLoses = playerLoses + 1;
+                    alert(`You have lost ${playerLoses} times`);
+                    return(playerloses);}
+
+            }else if(playerChoice === 'scissors'){
+                if (computerChoice === 'rock'){
+                    alert('You lose!, rock beats scissors!')
+                    playerLoses = playerLoses + 1;
+                    alert(`You have lost ${playerLoses} times`);
+                    return playerLoses;
+                }else if (computerChoice === 'paper') {
+                    alert('You win!, scissors beats paper!')
+                    playerWins = playerWins + 1;
+                    alert(`You have won ${playerWins} times`);
+                    return(playerWins);
+                }else if (computerChoice === 'scissors'){
+                    alert('It\'s a tie!, you both picked scissors!')
+                    ties = ties + 1;
+                    alert(`You have tied ${ties} times`);
+                    return(ties);}
+            }
+        }*/
+
         computerPlay();
-        //console.log(computerSelection);
+        playerPlay();
+        playRound(computerSelection, playerSelection);
     </script>
 </body>
+
 </html>
