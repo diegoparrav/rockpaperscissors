@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,21 @@
 </head>
 
 <body>
+    <div class="parent">
+        <div class = 'buttons'>
+            <button class = 'button rock'>Rock</button>
+            <button class = 'button paper'>Paper</button>
+            <button class= 'button scissors'>Scissors</button>
+        </div>
+        <div class="results">
+            <div class="wins">Player Wins</div> 
+            <div class="loses">Computer wins</div>
+            <div class="ties">Ties</div>
+        </div>
+    </div>    
     <script>
+        alert('First to 5 wins it\'s the champion')
+
         // variable declaration for a global variable, set to an empty string for both the selection of the computer and user
         let computerSelection = '';
         let playerSelection = '';
@@ -19,8 +34,6 @@
         let playerWins = 0;
         let playerLoses = 0;
         let ties = 0;
-        let fuckYouLoop = '';
-
 
         // function to set a random selection between rock paper or scissors for the computer 
         function computerPlay() {
@@ -42,24 +55,58 @@
             }
         }
 
+        //this line of code adds an event listener to the button with the rock label
+        //when clicked it sets the playerSelection to rock, calls the computerPLay function
+        //and calls the playRound function
+        const rockbtn =document.querySelector('.rock');
+        rockbtn.addEventListener('click',() =>{
+            if ((playerWins >= 5)||(playerLoses >= 5)){
+                alert('We already have a champion, refresh the page to play again')
+            }else{
+                playerSelection = 'rock';
+                computerPlay();
+                playRound(computerSelection,playerSelection);    
+            }
+        })
+
+        const paperbtn =document.querySelector('.paper');
+        paperbtn.addEventListener('click',() =>{
+            if ((playerWins >= 5)||(playerLoses >= 5)){
+                alert('We already have a champion, refresh the page to play again')
+            }else{
+                playerSelection = 'paper';
+                computerPlay();
+                playRound(computerSelection,playerSelection);
+            }    
+        })
+
+        const scissorsbtn =document.querySelector('.scissors');
+        scissorsbtn.addEventListener('click',() =>{
+            if ((playerWins >= 5)||(playerLoses >= 5)){
+                alert('We already have a champion, refresh the page to play again')
+            }else{
+                playerSelection = 'scissors';
+                computerPlay();
+                playRound(computerSelection,playerSelection);    
+            }
+        })
+
+        /*        
         //function to record a valid choice for the game from the user 
         function playerPlay() {
 
             while (loopController) {
-                let playerSelection = (prompt("It's time to play, Rock, Paper, Scissors!")).toLowerCase();
+                playerSelection = (prompt("It's time to play, Rock, Paper, Scissors!")).toLowerCase();
                 if (!(playerSelection === 'rock' || playerSelection === 'paper' || playerSelection === 'scissors')) {
                     alert('Your selection is not valid, Pleas choose between Rock, Paper or Scissors')
                 } else {
                     alert('your selection has been recorded');
                     console.log(playerSelection);
-                    fuckYouLoop = 'WHAT THE FUCK IS HAPPENING';
                     loopController = false;
                 }
             }
-            console.log(playerSelection + 'hello');
-            console.log(loopController);
-            console.log(fuckYouLoop);    
-        }
+          
+        }*/
 
         function playRound(computerChoice,playerChoice) {
             //console.log(computerChoice);
@@ -71,62 +118,129 @@
                     alert('It\'s a tie!, you both picked rock!');
                     ties = ties + 1;
                     alert(`You have tied ${ties} times`);
-                    return ties;
 
+                    const tiesDiv = document.querySelector('.ties');
+                    const tiesSpan = document.createElement('span');
+                    tiesSpan.setAttribute('id','tiesSpan')
+                    tiesDiv.appendChild(tiesSpan);
+                    document.getElementById('tiesSpan').innerHTML = (` ${ties}`); 
+      
                 }else if (computerChoice === 'paper') {
                     alert('You lose!, paper beats rock!');
-                    playerLoses = playerloses + 1;
-                    alert(`You have lost ${playerloses} times`);
-                    return(playerloses);
+                    playerLoses = playerLoses + 1;
+                    alert(`Computer has won ${playerLoses} times`);
+
+                    const losesDiv = document.querySelector('.loses');
+                    const losesSpan = document.createElement('span');
+                    losesSpan.setAttribute('id','losesSpan')
+                    losesDiv.appendChild(losesSpan);
+                    document.getElementById('losesSpan').innerHTML = (` ${playerLoses}`); 
+
+                    return(playerLoses);
 
                 }else if (computerChoice === 'scissors'){
                     alert('You win!, rock beats scissors!');
                     playerWins = playerWins + 1;
-                    alert(`You have won ${playerWins} times`);
-                    return(playerloses);}
-            }
-        }
+                    alert(`You have won ${ playerWins} times`);
 
-/*
-            }else if(playerChoice === 'paper'){
+                    const winsDiv = document.querySelector('.wins');
+                    const winsSpan = document.createElement('span');
+                    winsSpan.setAttribute('id','winsSpan')
+                    winsDiv.appendChild(winsSpan);
+                    document.getElementById('winsSpan').innerHTML = (` ${playerWins}`);
+
+                    return(playerWins);}
+                
+                
+            }
+        
+
+
+            else if(playerChoice === 'paper'){
                 if (computerChoice === 'rock'){
                     alert('You win!, paper beats rock!')
                     playerWins = playerWins + 1;
                     alert(`You have won ${playerWins} times`);
+
+                    const winsDiv = document.querySelector('.wins');
+                    const winsSpan = document.createElement('span');
+                    winsSpan.setAttribute('id','winsSpan')
+                    winsDiv.appendChild(winsSpan);
+                    document.getElementById('winsSpan').innerHTML = (` ${playerWins}`);
+
                     return playerWins;
+
                 }else if (computerChoice === 'paper') {
                     alert('It\'s a tie!, you both picked paper!')
                     ties = ties + 1;
                     alert(`You have tied ${ties} times`);
+
+                    const tiesDiv = document.querySelector('.ties');
+                    const tiesSpan = document.createElement('span');
+                    tiesSpan.setAttribute('id','tiesSpan')
+                    tiesDiv.appendChild(tiesSpan);
+                    document.getElementById('tiesSpan').innerHTML = (` ${ties}`); 
+
                     return(ties);
+
                 }else if (computerChoice === 'scissors'){
                     alert('You lose!, scissors beats paper!')
                     playerLoses = playerLoses + 1;
-                    alert(`You have lost ${playerLoses} times`);
-                    return(playerloses);}
+                    alert(`Computer has won ${playerLoses} times`);
+
+                    const losesDiv = document.querySelector('.loses');
+                    const losesSpan = document.createElement('span');
+                    losesSpan.setAttribute('id','losesSpan')
+                    losesDiv.appendChild(losesSpan);
+                    document.getElementById('losesSpan').innerHTML = (` ${playerLoses}`);
+                    
+                    return(playerLoses);}
 
             }else if(playerChoice === 'scissors'){
                 if (computerChoice === 'rock'){
                     alert('You lose!, rock beats scissors!')
                     playerLoses = playerLoses + 1;
-                    alert(`You have lost ${playerLoses} times`);
+                    alert(`Computer has won ${playerLoses} times`);
+
+                    const losesDiv = document.querySelector('.loses');
+                    const losesSpan = document.createElement('span');
+                    losesSpan.setAttribute('id','losesSpan')
+                    losesDiv.appendChild(losesSpan);
+                    document.getElementById('losesSpan').innerHTML = (` ${playerLoses}`);
+
                     return playerLoses;
+
                 }else if (computerChoice === 'paper') {
                     alert('You win!, scissors beats paper!')
                     playerWins = playerWins + 1;
                     alert(`You have won ${playerWins} times`);
+
+                    const winsDiv = document.querySelector('.wins');
+                    const winsSpan = document.createElement('span');
+                    winsSpan.setAttribute('id','winsSpan')
+                    winsDiv.appendChild(winsSpan);
+                    document.getElementById('winsSpan').innerHTML = (` ${playerWins}`);
+
                     return(playerWins);
+
                 }else if (computerChoice === 'scissors'){
                     alert('It\'s a tie!, you both picked scissors!')
                     ties = ties + 1;
                     alert(`You have tied ${ties} times`);
+
+                    const tiesDiv = document.querySelector('.ties');
+                    const tiesSpan = document.createElement('span');
+                    tiesSpan.setAttribute('id','tiesSpan')
+                    tiesDiv.appendChild(tiesSpan);
+                    document.getElementById('tiesSpan').innerHTML = (` ${ties}`);      
+
                     return(ties);}
             }
-        }*/
+        }
 
-        computerPlay();
-        playerPlay();
-        playRound(computerSelection, playerSelection);
+        //computerPlay();
+        //playerPlay();
+        //playRound(computerSelection, playerSelection);
     </script>
 </body>
 
